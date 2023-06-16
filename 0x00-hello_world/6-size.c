@@ -13,11 +13,11 @@ int main(void)
 	char charT;
 
 	/*sizeof evaluates the size of a variable*/
-	printf("Size of char: %zu byte(s)\n", sizeof(charT));
-	printf("Size of int: %zu byte(s)\n", sizeof(intT));
-	printf("Size of long int: %zu byte(s)\n", sizeof(longT));
-	printf("Size of long long int: %zu byte(s)\n", sizeof(longlT));
-	printf("Size of float: %zu byte(s)\n", sizeof(floatlT));
+	printf("Size of a char: %zu byte(s)\n", sizeof(charT));
+	printf("Size of an int: %zu byte(s)\n", sizeof(intT));
+	printf("Size of a long int: %zu byte(s)\n", sizeof(longT));
+	printf("Size of a long long int: %zu byte(s)\n", sizeof(longlT));
+	printf("Size of a float: %zu byte(s)\n", sizeof(floatlT));
 
 	return (0);
 }
