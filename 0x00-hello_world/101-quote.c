@@ -2,12 +2,13 @@
 
 /**
  * main - prints a string of text
- * Return: Returns a 0
+ * Return: Returns a 1
  */
 int main(void)
 {
-        printf("and that piece of art is useful\" - Dora Korpar, 2015-10-19");
+	printf("and that piece of art is useful\"");
+	printf(" - Dora Korpar, 2015-10-19");
 
-        return (1);
+	return (1);
 }
 
