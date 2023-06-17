@@ -16,7 +16,7 @@ int main(void)
 		putchar('0' + ch);
 	}
 
-	for (ch = 0; ch <= 6; ch++)
+	for (ch = 0; ch <= 5; ch++)
 	{
 		/*print alphabets in lower cases a-f*/
 		putchar('a' + ch);
