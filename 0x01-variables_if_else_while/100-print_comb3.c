@@ -21,8 +21,9 @@ int main(void)
 				if (rep > 1)
 				{
 					putchar(',');
-					putchar(' ');
+					/*putchar(' ');*/
 				}
+			putchar(' ');
 		}
 	rep--;
 	number++;
