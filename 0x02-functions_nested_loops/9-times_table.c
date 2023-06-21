@@ -1,11 +1,10 @@
 #include "main.h"
 
 /**
- * _islower - prints a string of text
+ * times_table - prints a string of text
  * Return: Returns a 0
- * @c: describe the parameter
  */
-int _islower(int c)
+void times_table(void)
 {
 	int x, y, z, dm, g;
 
