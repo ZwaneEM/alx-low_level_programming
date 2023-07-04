@@ -1,4 +1,4 @@
-#include  "main"
+#include "main.h"
 
 /**
 * _memset -   copy number bytes form adress "from" to adress "to"
