@@ -1,10 +1,9 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * _isdigit - checks for digits
- * Return: Returns a 0 if not a digit
- * returns a 1 if digit
- * @c : a value of a character is passed
+ * _isdigit - checks if parameter is a number between 0 to 9.
+ * @c: input number.
+ * Return: 1 if is a number (0 to 9), 0 in other case.
  */
 int _isdigit(int c)
 {

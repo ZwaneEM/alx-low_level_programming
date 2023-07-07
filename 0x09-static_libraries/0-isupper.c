@@ -1,10 +1,9 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * _isupper - checks for uppercase characters
- * Return: Returns a 0 if lowercase
- * returns a 1 if uppercase
- * @c : a value of a character is passed
+ * _isupper - checks if parameter is an uppercase character.
+ * @c: input character.
+ * Return: 1 if is an uppercase character, 0 in other case.
  */
 int _isupper(int c)
 {
@@ -17,3 +16,4 @@ int _isupper(int c)
 		return (0);
 	}
 }
+
