@@ -15,17 +15,20 @@ int int_index(int *array, int size, int (*cmp)(int))
 	if (size <= 0)
 		return (-1);
 
-	for (ite = 0; ite <= size; ite++)
+	if (array && cmp)
 	{
-		if ((*cmp)(array[ite]) == 1)
+		for (ite = 0; ite <= size; ite++)
 		{
-			count = ite;
-			break;
-		}
-		else if (ite == size)
-		{
-			return (-1);
-			break;
+			if ((*cmp)(array[ite]) == 1)
+			{
+				count = ite;
+				break;
+			}
+			else if (ite == size)
+			{
+				return (-1);
+				break;
+			}
 		}
 	}
 
