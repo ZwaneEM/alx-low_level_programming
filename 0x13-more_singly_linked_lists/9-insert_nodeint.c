@@ -39,10 +39,10 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 			current->next = new;
 			current = new;
 			current->next = temp;
-			break;
+			return (*head);
 		}
 		current = current->next;
 	}
 
-	return (*head);
+	return (NULL);
 }
