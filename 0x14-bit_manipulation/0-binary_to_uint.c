@@ -12,7 +12,7 @@ unsigned int binary_to_uint(const char *b)
 	unsigned int ret;
 	int len, bit;
 
-	if (b == NULL)
+	if (!b)
 		return (0);
 
 	ret = 0;
