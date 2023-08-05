@@ -2,36 +2,42 @@
 
 /**
  * binary_to_uint - converts a binary number to an
- * unsigned int.
- * @b: binary.
+ * unsigned int
+ * @b: The string to convert
  *
- * Return: unsigned int.
+ * Return: The converted number
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int ret;
-	int len, bit;
+	/*declaration and initilization*/
+	int len;
+	unsigned int val = 1;
+	unsigned int base_2 = 0;
 
 	if (!b)
 		return (0);
 
-	ret = 0;
+	len = strlen(b); /*length of the string*/
 
-	for (len = 0; b[len] != '\0'; len++)
-		;
-
-	for (len--, bit = 1; len >= 0; len--, bit *= 2)
+	for (len--; len >= 0; len--)
 	{
-		if (b[len] != '0' && b[len] != '1')
+		if (b[len] == '1')
+		{
+			base_2 += val;
+			val *= 2;
+		}
+
+		if (b[len] == '0')
+		{
+			val *= 2;
+		}
+
+		if (b[len] != '1' && b[len] != '0')
 		{
 			return (0);
 		}
 
-		if (b[len] & 1)
-		{
-			ret += bit;
-		}
 	}
 
-	return (ret);
+	return (base_2);
 }
