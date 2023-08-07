@@ -13,27 +13,24 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	/*declaration and initiliazation*/
-	FILE *fp;
-	char position;
-	size_t count = 0;
+	ssize_t fp, data, print;
+	char *file;
 
 	if (!filename)
 		return (0);
 
-	fp = fopen(filename, "r");
+	fp = open(filename, O_RDONLY);
 
-	if (!fp)
+	file = malloc(letters);
+
+	if (fp == -1)
 		return (0);
 
-	while ((position = getc(fp)) != EOF && count < letters)
-	{
-		if (position == 0)
-			return (0);
-		fprintf(stdout, "%c", position);
-		count++;
-	}
+	data = read(fp, file, letters);
 
-	fclose(fp);
+	print = write(STDOUT_FILENO, file, data);
 
-	return (count);
+	close(fp);
+	
+	return (print);
 }
