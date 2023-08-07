@@ -27,6 +27,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	while ((position = getc(fp)) != EOF && count < letters)
 	{
+		if (position == 0)
+			return (0);
 		fprintf(stdout, "%c", position);
 		count++;
 	}
