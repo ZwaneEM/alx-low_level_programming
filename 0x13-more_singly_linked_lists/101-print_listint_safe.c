@@ -1,40 +1,84 @@
-`
-size_t looped_listint_len(const listint_t *head)
+#include "lists.h"
+
+
+/** 
+* check_node - checks if the list is a looped list 
+* @head: The start of the list 
+* Return: 1 if is loop/ -1 if not loop 
+*/ 
+size_t check_node(const listint_t *head) 
+{ 
+	const listint_t *current, *previous; 
+
+	current = head;
+
+	while (head) 
+ 	{
+	 	if (current->next == head || head->next == current)
+ 		{ 
+ 			return (1); 
+ 		} 
+
+ 		if (current->next == NULL) 
+ 			break; 
+
+ 		current = current->next; 
+ 	} 
+
+ 	return (2); 
+ }
+
+
+
+/**
+ * print_listint_safe - prints a linked list 
+ * @head: The start of the linked list
+ * Return: The number of nodes in the list
+ */
+size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *tortoise, *hare;
-	size_t nodes = 1;
+	size_t loop;
+	size_t nodes = 0;
+	const listint_t *current = NULL;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
+	if (!head)
+		exit (98);
 
-	tortoise = head->next;
-	hare = (head->next)->next;
+	loop = check_node(head);
 
-	while (hare)
+	current = head;
+
+	if (loop == 1)
 	{
-		if (tortoise == hare)
+		while (head)
 		{
-			tortoise = head;
-			while (tortoise != hare)
+			nodes += 1;
+			if (current->next == head)
 			{
-				nodes++;
-				tortoise = tortoise->next;
-				hare = hare->next;
+				printf("[%p] %d\n", (void *)current, current->n);
+				break;
 			}
 
-			tortoise = tortoise->next;
-			while (tortoise != hare)
-			{
-				nodes++;
-				tortoise = tortoise->next;
-			}
-
-			return (nodes);
+			printf("[%p] %d\n", (void *)current, current->n);
+			current = current->next;
 		}
-
-		tortoise = tortoise->next;
-		hare = (hare->next)->next;
 	}
 
-	return (0);
+	if (loop == 2)
+	{
+		while (head)
+		{
+			nodes += 1;
+			if (current->next == NULL)
+			{
+				printf("[%p] %d\n", (void *)current, current->n);
+				break;
+			}
+
+			printf("[%p] %d\n", (void *)current, current->n);
+			current = current->next;
+		}
+	}
+
+	return (nodes);
 }
