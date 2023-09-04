@@ -13,7 +13,6 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	int fp;
 	ssize_t nchar;
 	char *vchar;
-	ssize_t letters_cpy = letters;
 
 	if (filename == NULL)
 		return (0);
@@ -22,21 +21,18 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	if (fp == -1)
 		return (0);
-	vchar = malloc(sizeof(char) * letters);
 
+	vchar = malloc(sizeof(char) * letters);
 	if (vchar == NULL)
 		return (0);
 
 	nchar = read(fp, vchar, letters);
 
-	if (nchar != letters_cpy && nchar > letters_cpy)
-		return (0);
-
 	write(STDOUT_FILENO, vchar, letters);
 
-	close(fp);
-
 	free(vchar);
+
+	close(fp);
 
 	return (nchar);
 }
