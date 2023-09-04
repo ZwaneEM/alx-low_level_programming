@@ -30,10 +30,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	if (nwrite < 0)
 		return (0);
+	free(vchar);
 
 	close(fp);
-
-	free(vchar);
 
 	return (nchar);
 }
