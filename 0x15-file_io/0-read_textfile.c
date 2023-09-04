@@ -40,7 +40,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 			vchar[len - 1] = '\0';
 			num -= 1;
 		}
-		if ((write(1, vchar, strlen(vchar))) == -1)
+		if ((write(STDOUT_FILENO, vchar, strlen(vchar))) == -1)
 			return (0);
 
 	}
