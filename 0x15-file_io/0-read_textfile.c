@@ -10,43 +10,31 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t actual_nchar = 0;
-	size_t num = 0;
-	FILE *fp;
-	int len;
-	int letters_cpy = letters;
-	char vchar[255];
+	int fp;
+	ssize_t nchar;
+	char *vchar;
+	ssize_t letters_cpy = letters;
 
 	if (filename == NULL)
 		return (0);
 
-	fp = fopen(filename, "r");
+	fp = open(filename, O_RDONLY);
 
-	if (fp == NULL)
+	if (fp == -1)
+		return (0);
+	vchar = malloc(sizeof(char) * letters);
+
+	if (vchar == NULL)
 		return (0);
 
-	while (num < (letters - 1))
-	{
-		fgets(vchar, letters_cpy, fp);
-		if (feof(fp))
-		{
-			break;
-		}
-		num += strlen(vchar);
+	nchar = read(fp, vchar, letters);
 
-		if (num >= letters)
-		{
-			len = strlen(vchar);
-			vchar[len - 1] = '\0';
-			num -= 1;
-		}
-		if ((write(STDOUT_FILENO, vchar, strlen(vchar))) == -1)
-			return (0);
+	if (nchar != letters_cpy && nchar > letters_cpy)
+		return (0);
 
-	}
+	write(STDOUT_FILENO, vchar, letters);
 
-	fclose(fp);
-	actual_nchar = num;
+	close(fp);
 
-	return (actual_nchar);
+	return (nchar);
 }
