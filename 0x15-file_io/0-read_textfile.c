@@ -10,8 +10,9 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int nchar, fp, nwrite;
+	int fp;
 	char *vchar;
+	int nwrite, nchar = 0;
 
 	if (filename == NULL)
 		return (0);
@@ -22,16 +23,29 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	vchar = malloc(sizeof(char) * letters);
 	if (vchar == NULL)
-		return (0);
+	{
+		close(fp);
+		return(0);
+	}
 
 	nchar = read(fp, vchar, letters);
+	if (nchar == -1)
+	{
+		free(vchar);
+		close(fp);
+		return (0);
+	}
 
 	nwrite = write(STDOUT_FILENO, vchar, letters);
 
-	if (nwrite < 0)
+	if (nwrite == 0)
+	{
+		free(vchar);
+		close(fp);
 		return (0);
-	free(vchar);
+	}
 
+	free(vchar);
 	close(fp);
 
 	return (nchar);
