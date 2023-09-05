@@ -51,11 +51,12 @@ int cpy_files(char *filename_f, char *filename_t)
 	while ((readn = read(file_from, nread, 1024)) > 0)
 	{
 		nwrite = write(file_to, nread, readn);
-		if (nwrite == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename_t);
-			exit(99);
-		}
+		if (readn != nwrite)
+			dprintf(STDERR_FILENO, "Error: Cant't write to %s\n", filename_t), exit(99);
+	}
+	if (readn == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read to %s\n", filename_t), exit(98);
 	}
 	close1 = close(file_from);
 	if (close1 == -1)
@@ -69,6 +70,5 @@ int cpy_files(char *filename_f, char *filename_t)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
 		exit(100);
 	}
-
 	return (1);
 }
